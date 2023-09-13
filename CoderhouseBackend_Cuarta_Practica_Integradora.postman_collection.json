@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "7e4ec8d4-5ac6-4eb8-a35c-92be81648636",
+		"name": "CoderhouseBackend_Cuarta_Practica_Integradora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1606121"
+	},
+	"item": [
+		{
+			"name": "user change role",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/users/premium/64c91d2d880b8d2a669f362d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"premium",
+						"64c91d2d880b8d2a669f362d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"leofr13nco@gmail.com\",\r\n    \"password\":\"1234567\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/session/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"session",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user upload documents",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "identificacion",
+							"type": "file",
+							"src": "/C:/Users/DELL/OneDrive/Imágenes/Data Analytics Img.jpg"
+						},
+						{
+							"key": "domicilio",
+							"type": "file",
+							"src": "/C:/Users/DELL/OneDrive/Imágenes/Soporte Monitor Klip/Soporte2.jpg"
+						},
+						{
+							"key": "estadoDeCuenta",
+							"type": "file",
+							"src": "/C:/Users/DELL/OneDrive/Imágenes/Zoom/GOT.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/users/64c91d2d880b8d2a669f362d/documents",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"64c91d2d880b8d2a669f362d",
+						"documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product update image",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "productImage",
+							"type": "file",
+							"src": "/C:/Users/DELL/OneDrive/Imágenes/Data Analytics Img.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/products/646586144013968fb69fc7fd",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"646586144013968fb69fc7fd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,223 @@
+paths:
+  /api/products:
+    get:
+      summary: Get a list of products
+      tags:
+        - Products
+      parameters:
+        - name: limit
+          in: query
+          description: Number of products to retrieve (default 10)
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: Page number for pagination (default 1)
+          schema:
+            type: integer
+        - name: query
+          in: query
+          description: Query parameters for filtering products
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: Sort products by 'asc' (ascending) or 'desc' (descending)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  code:
+                    type: integer
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  totalPages:
+                    type: integer
+                  prevPage:
+                    type: integer
+                  nextPage:
+                    type: integer
+                  page:
+                    type: integer
+                  hasPrevPage:
+                    type: boolean
+                  hasNextPage:
+                    type: boolean
+                  prevLink:
+                    type: string
+                  nextLink:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    post:
+      summary: Create a new product
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Successfully created a new product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /api/products/{idProduct}:
+    get:
+      summary: Get a product by ID
+      tags:
+        - Products
+      parameters:
+        - name: idProduct
+          in: path
+          required: true
+          description: ID of the product to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    put:
+      summary: Update a product by ID
+      tags:
+        - Products
+      parameters:
+        - name: idProduct
+          in: path
+          required: true
+          description: ID of the product to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Successfully updated the product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+    delete:
+      summary: Delete a product by ID
+      tags:
+        - Products
+      parameters:
+        - name: idProduct
+          in: path
+          required: true
+          description: ID of the product to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted the product
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the product
+        description:
+          type: string
+          description: Description of the product
+        price:
+          type: number
+          description: Price of the product
+        thumbnail:
+          type: string
+          description: URL of the product's thumbnail
+        code:
+          type: string
+          description: Code of the product
+        stock:
+          type: integer
+          description: Stock quantity of the product
+        status:
+          type: boolean
+          description: Status of the product (true for active, false for inactive)
+        category:
+          type: string
+          description: Category of the product
+        owner:
+          type: string
+          description: Owner of the product
+      example:
+        title: Sample Product
+        description: This is a sample product description.
+        price: 29.99
+        thumbnail: https://example.com/thumbnail.jpg
+        code: ABC123
+        stock: 50
+        status: true
+        category: Electronics
+        owner: admin

@@ -1,0 +1,214 @@
+paths:
+  /api/carts:
+    get:
+      summary: Get a list of carts
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: Successfully retrieved carts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cart'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+    post:
+      summary: Add a new cart
+      tags:
+        - Carts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '200':
+          description: Successfully added a new cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cart'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /api/carts/{idcart}:
+    get:
+      summary: Get products from a cart by ID
+      tags:
+        - Carts
+      parameters:
+        - name: idcart
+          in: path
+          required: true
+          description: ID of the cart to retrieve products from
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved products from the cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+    put:
+      summary: Update a cart by ID
+      tags:
+        - Carts
+      parameters:
+        - name: idcart
+          in: path
+          required: true
+          description: ID of the cart to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        '200':
+          description: Successfully updated the cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cart'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+    delete:
+      summary: Delete a cart by ID
+      tags:
+        - Carts
+      parameters:
+        - name: idcart
+          in: path
+          required: true
+          description: ID of the cart to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted the cart
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /api/carts/{idcart}/products/{idproduct}:
+    post:
+      summary: Add a product to a cart
+      tags:
+        - Carts
+      parameters:
+        - name: idcart
+          in: path
+          required: true
+          description: ID of the cart to add the product to
+          schema:
+            type: string
+        - name: idproduct
+          in: path
+          required: true
+          description: ID of the product to add to the cart
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully added the product to the cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cart'
+        '400':
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartProduct'
+      example:
+        {
+          "products":[]
+        }     
+    CartProduct:
+      type: object
+      properties:
+        product:
+          type: string
+          description: ID of the product to add to the cart
+        quantity:
+          type: integer
+          description: Quantity of the product to add to the cart
+
+
+
+

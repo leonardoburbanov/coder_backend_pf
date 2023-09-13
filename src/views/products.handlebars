@@ -1,0 +1,35 @@
+<div style="display: flex; justify-content: flex-end;">
+    <a href="/api/session/logout"><button>Salir</button></a>
+    <a href="/chat"><button>Chat</button></a>
+</div>
+<div class="card">
+    <h1>¡Te damos la bienvenida!</h1>
+    <p>Usuario: <b>{{user.name}}</b></p>
+    <p>Email: <b>{{user.email}}</b></p>
+    <p>Edad: <b>{{user.age}}</b></p>
+    <p>Rol: <b>{{user.rol}}</b></p>
+</div>
+<div class="card">
+    <p>A continuación, los mejores productos:</p>
+    {{#each products}}
+    <div class="card">
+        <h3>{{this.title}}</h3>
+        <p><b>Description: </b>{{this.description}}</p>
+        <p><b>Price: </b>{{this.price}}</p>
+        <a href="/products/{{this._id}}">
+        <button class="button">
+            View detail
+        </button>
+        </a>
+    </div>
+    
+    {{/each}}
+    <div class="container">
+        {{#if hasPrevPage}}
+        <a href="/products?page={{prevPage}}"><button class="button">Anterior</button></a>
+        {{/if}}
+        {{#if hasNextPage}}
+        <a href="/products?page={{nextPage}}"><button class="button">Siguiente</button></a>
+        {{/if}}
+    </div>
+</div>

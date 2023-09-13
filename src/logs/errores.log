@@ -1,0 +1,4 @@
+info: Level info
+warn: Level warn
+error: Level error
+fatal: Level fatal

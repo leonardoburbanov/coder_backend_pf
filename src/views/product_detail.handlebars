@@ -1,0 +1,28 @@
+<div style="display: flex; justify-content: flex-end;">
+    <a href="/api/session/logout"><button>Salir</button></a>
+</div>
+<div class="card">
+    <div>
+        <h3>{{product.title}}</h3>
+        <p><b>Description: </b>{{product.description}}</p>
+        <p><b>Price: </b>{{product.price}}</p>
+        <p><b>Code: </b>{{product.code}}</p>
+        <p><b>Stock: </b>{{product.stock}}</p>
+        <p><b>Status: </b>{{product.status}}</p>
+        <p><b>Category: </b>{{product.category}}</p>
+        <input type="text" name="cartId" id="cartId" placeholder="Enter Cart Id">
+    </div>
+    <div>
+        <button class="button" onclick="addProduct('{{product._id}}')">
+            AddToCart
+        </button>
+    </div>
+</div>
+<div class="card">
+    <h3>Active carts:</h3>
+    {{#each carts}}
+    <p> {{this._id}}</p>
+    {{/each}}
+</div>
+<script src="/js/product_detail.js" onload="checkScriptLoad()"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

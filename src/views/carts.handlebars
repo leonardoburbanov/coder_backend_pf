@@ -1,0 +1,19 @@
+<div style="display: flex; justify-content: flex-end;">
+    <a href="/api/session/logout"><button>Salir</button></a>
+</div>
+<div class="card">
+    <div class="card">
+        <h3>
+            Cart:
+        </h3>
+        <p><b>{{this.idCart}}</b></p>
+    </div>
+    <div class="card">
+        {{#each products}}
+            <div class="card">
+                <p><b>Product: </b>{{this.product.title}}</p>
+                <p><b>Description: </b>{{this.product.description}}</p>
+            </div>  
+        {{/each}}
+    </div>
+</div>
