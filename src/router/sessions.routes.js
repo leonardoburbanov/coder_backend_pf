@@ -7,6 +7,7 @@ import { registerConfirmation } from '../messages/email/nodemailer.js';
 import {sendRecoveryPass} from "../messages/email/nodemailer.js"
 import UserModel from "../dao/models/User.model.js";
 import { createHash, validatePassword, generateEmailToken, verifyEmailToken, uploaderProfile } from "../utils.js";
+import cartsService from '../services/carts.service.js';
 
 
 const router = Router();
@@ -31,6 +32,9 @@ router.post('/login', passport.authenticate('login',{failureRedirect:'/api/sessi
         age: req.user.age,
         rol: req.user.rol
     }
+    req.session.cart = await cartsService.addCart({
+        product : []
+    })
     await usersService.updateUserLastConnectionByEmail(req.user.email)
     res.send({status:"Success", payload:req.user, message:"Primer logueo!!"})
 })

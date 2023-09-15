@@ -1,9 +1,8 @@
-
-function addProduct(idProduct,cartId) {
+function purchaseCart(cartId) {
     // JavaScript code here
-    axios.post(`http://localhost:8080/api/carts/${cartId}/product/${idProduct}`)
+    axios.post(`http://localhost:8080/api/carts/${cartId}/purchase`)
       .then(response => {
-        window.location.href = `/carts/${cartId}`;
+        window.location.href = `/`;
       })
       .catch(error => {
         // Handle errors

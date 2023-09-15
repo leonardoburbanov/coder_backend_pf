@@ -118,6 +118,16 @@ class CartsDaoMemory {
           throw new Error('Error in delete operation. Cart not found.')
       }
   }
+  deleteFullCart = async(id_cart)=>{
+    let cart_found = await cartModel.find({_id:id_cart})
+    if(cart_found.length!=0){
+        await cartModel.deleteOne({_id:id_cart});
+        let cartDeleted = cart_found
+        return cartDeleted
+    }else{
+        throw new Error('Error in delete operation. Cart not found.')
+    }
+}
 }
 
 export default new CartsDaoMemory();

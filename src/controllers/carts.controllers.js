@@ -142,6 +142,8 @@ class CartsController {
                     }
                 }
 
+                // Revisar esto, condición qué pasa si la cart aún tiene productos. Probablemente la guardo en el usuario
+                const cartDeleted = await cartsService.deleteFullCart(cartId);
                 const newTicket = {
                     code:uuidv4(),
                     purchase_datetime: new Date().toLocaleString(),
@@ -153,6 +155,7 @@ class CartsController {
                 //await sendMessage(`The ticket with your purchase ${newTicket.code} was successfully created at ${newTicket.purchase_datetime}!`)
                 let messageTicketConfirmation = `The ticket with your purchase ${newTicket.code} was successfully created at ${newTicket.purchase_datetime}!`
                 await ticketConfirmation(email,messageTicketConfirmation)
+                
                 res.send(ticketCreated)
             } else {
                 res.send("Cart doesn't exist")

@@ -13,7 +13,16 @@
             <div class="card">
                 <p><b>Product: </b>{{this.product.title}}</p>
                 <p><b>Description: </b>{{this.product.description}}</p>
+                <p><b>Price: </b>{{this.product.price}}</p>
             </div>  
         {{/each}}
     </div>
+    <div>
+        <button class="button" onclick="purchaseCart('{{this.idCart}}')">
+            Purchase
+        </button>
+        <a href="/products"><button class="button">Continue buying</button></a>
+    </div>
 </div>
+<script src="/js/carts.js" onload="checkScriptLoad()"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

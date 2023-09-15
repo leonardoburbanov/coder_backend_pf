@@ -10,19 +10,18 @@
         <p><b>Stock: </b>{{product.stock}}</p>
         <p><b>Status: </b>{{product.status}}</p>
         <p><b>Category: </b>{{product.category}}</p>
-        <input type="text" name="cartId" id="cartId" placeholder="Enter Cart Id">
     </div>
     <div>
-        <button class="button" onclick="addProduct('{{product._id}}')">
+        <button class="button" onclick="addProduct('{{product._id}}','{{cartId}}')">
             AddToCart
         </button>
     </div>
 </div>
-<div class="card">
+<!--div class="card">
     <h3>Active carts:</h3>
     {{#each carts}}
     <p> {{this._id}}</p>
     {{/each}}
-</div>
+</div-->
 <script src="/js/product_detail.js" onload="checkScriptLoad()"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

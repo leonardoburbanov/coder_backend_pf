@@ -25,6 +25,9 @@ class CartsService {
     deleteCart(id_cart){
         return cartsDaoMemory.deleteCart(id_cart);
     }
+    deleteFullCart(id_cart){
+        return cartsDaoMemory.deleteFullCart(id_cart);
+    }
 
 }
 

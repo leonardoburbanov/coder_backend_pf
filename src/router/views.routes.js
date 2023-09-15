@@ -78,10 +78,14 @@ router.get("/products/:idproduct", async (req,res)=>{
     const idProduct = req.params.idproduct
 
     const product = await productModel.find({"_id":idProduct})
-    const carts = await cartModel.find()
+    //const carts = await cartModel.find()
     res.render('product_detail', {
         product:product[0].toJSON(),
-        carts: carts.map(cart => cart.toJSON())
+        cartId: req.session.cart._id
+        // Inactive current carts
+        // carts: carts.map(cart => cart.toJSON())
+
+
     })
 
 })
