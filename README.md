@@ -26,6 +26,10 @@ iVgdlNawQEzD
 
 
 # Tests
+
+Se adjunta una colección de requests de Postman con los tests solicitados.
+**CoderhouseBackend_Cuarta_Practica_Integradora.postman_collection.json**
+
 0. Crear una vista para poder visualizar, modificar el rol y eliminar un usuario. Esta vista únicamente será accesible para el administrador del ecommerce
 1. Mantener un correcto manejo de sesiones
 - Admin

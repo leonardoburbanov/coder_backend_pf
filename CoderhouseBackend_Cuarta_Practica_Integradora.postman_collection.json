@@ -1,131 +1,214 @@
 {
 	"info": {
-		"_postman_id": "7e4ec8d4-5ac6-4eb8-a35c-92be81648636",
-		"name": "CoderhouseBackend_Cuarta_Practica_Integradora",
+		"_postman_id": "53c6f10c-947e-44d4-9085-19c9db9b4813",
+		"name": "CoderhouseBackend_ProyectoFinal",
+		"description": "Leonardo Burbano\n\nProgramación Backend\n\nComisión 51185",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1606121"
 	},
 	"item": [
 		{
-			"name": "user change role",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/users/premium/64c91d2d880b8d2a669f362d",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"premium",
-						"64c91d2d880b8d2a669f362d"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"leofr13nco@gmail.com\",\r\n    \"password\":\"1234567\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/session/login",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"session",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user upload documents",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "identificacion",
-							"type": "file",
-							"src": "/C:/Users/DELL/OneDrive/Imágenes/Data Analytics Img.jpg"
+			"name": "00 /api/session/register",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "User",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test-user2@coderhouse-backend.com",
+									"type": "text"
+								},
+								{
+									"key": "rol",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user123456",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
 						},
-						{
-							"key": "domicilio",
-							"type": "file",
-							"src": "/C:/Users/DELL/OneDrive/Imágenes/Soporte Monitor Klip/Soporte2.jpg"
-						},
-						{
-							"key": "estadoDeCuenta",
-							"type": "file",
-							"src": "/C:/Users/DELL/OneDrive/Imágenes/Zoom/GOT.jpg"
+						"url": {
+							"raw": "localhost:8080/api/session/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"session",
+								"register"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/api/users/64c91d2d880b8d2a669f362d/documents",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"users",
-						"64c91d2d880b8d2a669f362d",
-						"documents"
-					]
+				{
+					"name": "Upload documents to userId",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "identificacion",
+									"type": "file",
+									"src": "/C:/Users/DELL/OneDrive/Imágenes/Data Analytics Img.jpg"
+								},
+								{
+									"key": "domicilio",
+									"type": "file",
+									"src": "/C:/Users/DELL/OneDrive/Imágenes/Soporte Monitor Klip/Soporte2.jpg"
+								},
+								{
+									"key": "estadoDeCuenta",
+									"type": "file",
+									"src": "/C:/Users/DELL/OneDrive/Imágenes/Zoom/GOT.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/64c91d2d880b8d2a669f362d/documents",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"64c91d2d880b8d2a669f362d",
+								"documents"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "product update image",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "productImage",
-							"type": "file",
-							"src": "/C:/Users/DELL/OneDrive/Imágenes/Data Analytics Img.jpg"
+			"name": "01 /api/users",
+			"item": [
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:8080/api/products/646586144013968fb69fc7fd",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"products",
-						"646586144013968fb69fc7fd"
-					]
+				{
+					"name": "Delete users by last connection - 2 days",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "02 /api/products",
+			"item": [
+				{
+					"name": "Add product by premium",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"product CCAA504\",\r\n        \"description\": \"product CCAA504\",\r\n        \"price\": 503.88,\r\n        \"thumbnail\": [],\r\n        \"code\": \"CCAA504\",\r\n        \"stock\": 1,\r\n        \"status\": false,\r\n        \"category\": \"test\",\r\n        \"owner\": \"leofr13nco@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product + Email confirmation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/products/650917c28f854833467c53bd",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"650917c28f854833467c53bd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
