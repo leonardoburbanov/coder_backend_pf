@@ -4,20 +4,17 @@
 <div class="card">
     <div class="card">
         <h3>
-            Cart:
+            Please confirm your purchase:
         </h3>
-        <p><b>{{this.idCart}}</b></p>
+        <p><b>{{this.cartId}}</b></p>
     </div>
     <div class="card">
         {{#each products}}
             <div class="card">
                 <p><b>Product: </b>{{this.product.title}}</p>
                 <p><b>Description: </b>{{this.product.description}}</p>
-                <p><b>Price: </b>${{this.product.price}}</p>
+                <p><b>Price: </b>{{this.product.price}}</p>
                 <p><b>Quantity: </b>{{this.quantity}}</p>
-                <button class="button" onclick="removeFromCart('{{../idCart}}','{{this.product._id}}')">
-                    Remove from cart
-                </button>
             </div>  
         {{/each}}
     </div>
@@ -29,9 +26,11 @@
         <p><b>Subtotal: </b>${{this.subTotalCart}}</p>
         <p><b>Shipping: </b>${{this.shipping}}</p>
         <p><b>Total: </b>${{this.totalCart}}</p>
-        <a href="/carts/{{this.idCart}}/pre-ticket"><button class="button">Confirm purchase</button></a>
-        <a href="/products"><button class="button">Continue buying</button></a>
+        <button class="button" onclick="purchaseCart('{{this.cartId}}')">
+            Purchase
+        </button>
+        <a href="/carts/{{this.cartId}}"><button class="button">Add more products</button></a>
     </div>
 </div>
-<script src="/js/carts.js" onload="checkScriptLoad()"></script>
+<script src="/js/cartConfirmation.js" onload="checkScriptLoad()"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

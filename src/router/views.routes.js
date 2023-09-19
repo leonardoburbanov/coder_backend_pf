@@ -2,6 +2,9 @@ import { Router } from "express";
 import productModel from "../dao/models/products.model.js";
 import cartModel from "../dao/models/carts.model.js";
 import userModel from '../dao/models/User.model.js';
+import cartsService from "../services/carts.service.js";
+import productsService from "../services/products.service.js";
+
 
 const router = Router();
 
@@ -97,12 +100,56 @@ router.get("/carts/:idcart", async (req,res)=>{
 
     const carts = await cartModel.find({"_id":idCart}).populate('products.product')
     const products = carts[0].products;
+    const subTotalCart = calculateTotalValue(products)
+    const shipping = 5
+    const totalCart = subTotalCart + shipping
+    
     res.render('carts', {
         idCart,
-        products: products.map(product => product.toJSON())
+        products: products.map(product => product.toJSON()),
+        subTotalCart: subTotalCart,
+        shipping: shipping,
+        totalCart: totalCart
     })
 
 })
+
+router.get("/carts/:idcart/pre-ticket", async (req,res)=>{
+    const cartId = req.params.idcart;
+    const cart = await cartsService.getCartById(cartId);
+    let ticketProducts = [];
+    let rejectedProducts = [];
+    if(cart){
+        if(!cart.products.length){
+            return res.send("Please, add your products before to generate the purchase")
+        }
+        for(let i=0; i<cart.products.length;i++){
+            const cartProduct = cart.products[i];
+            const productDB = await productsService.getProductById(cartProduct.product._id);
+            if(cartProduct.quantity<=productDB.stock){
+                await cartsService.deleteProductInCart(cartId,cartProduct.product._id.toString())
+                ticketProducts.push(cartProduct);
+            } else {
+                rejectedProducts.push(cartProduct);
+            }
+        }
+    } else {
+        res.send("Cart doesn't exist")
+    }
+    const subTotalCart = calculateTotalValue(ticketProducts)
+    const shipping = 5
+    const totalCart = subTotalCart + shipping
+    
+    res.render('cartConfirmation', {
+        cartId,
+        products: ticketProducts.map(product => product.toJSON()),
+        subTotalCart: subTotalCart,
+        shipping: shipping,
+        totalCart: totalCart
+    })
+
+})
+
 
 
 router.get("/chat",(req,res)=>{
@@ -133,3 +180,17 @@ router.get("/reset-password",(req,res)=>{
 
 export default router;
 
+function calculateTotalValue(products) {
+    let totalValue = 0;
+  
+    for (const productItem of products) {
+      const { product, quantity } = productItem;
+      const { price } = product;
+      
+      // Calculate the product subtotal and add it to the totalValue
+      const productSubtotal = price * quantity;
+      totalValue += productSubtotal;
+    }
+  
+    return totalValue;
+}
