@@ -35,6 +35,15 @@ const ticketTemplate =
 <a href="http://localhost:8080/">Explorar</a>
 </div>`;
 
+
+const productDeleteTemplate = 
+`<div>
+<h1>Product deleted!!</h1>
+<img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/portals_3/2x1_SuperMarioHub.jpg" style="width:250px"/>
+<p>You can start using our services</p>
+<a href="http://localhost:8080/">Explorar</a>
+</div>`;
+
 const registerConfirmation = async(to_email)=>{
     let result = await transporter.sendMail({
         from: ecommerceName,
@@ -77,4 +86,14 @@ const sendRecoveryPass = async(userEmail,token)=>{
 };
 
 
-export { registerConfirmation, ticketConfirmation, sendRecoveryPass }
+const productDeleteConfirmation = async(to_email)=>{
+    let result = await transporter.sendMail({
+        from: ecommerceName,
+        to: to_email,
+        subject: "Your product has been deleted!",
+        html: productDeleteTemplate
+    })
+    return result
+}
+
+export { registerConfirmation, ticketConfirmation, sendRecoveryPass, productDeleteConfirmation }

@@ -8,6 +8,8 @@ const router = Router();
 
 const usersController = new UsersController();
 
+router.get("/", usersController.getUsers)
+router.delete("/", usersController.deleteInactiveUsers);
 router.put("/premium/:uidUser", usersController.updateUserRol);
 router.delete("/:uidUser", usersController.deleteUser);
 router.put("/:uid/documents",

@@ -31,7 +31,7 @@ class CartsDaoMemory {
             throw Error('Cart not exists.');
             return;
         }else{
-            if((userRol == 'premium' & userEmail != productExists.owner) | userRol == 'user' | userRol == 'admin'){
+            if((userRol == 'premium' & userEmail != productExists.owner) | userRol == 'user'){
                 let productsInCart = cart_found[0].products;
                 const productIndex = productsInCart.findIndex(product => product.product._id == id_product)
                 if(productIndex !== -1){

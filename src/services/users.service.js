@@ -2,6 +2,9 @@ import { UsersRepository } from "../repository/users.repository.js";
 import usersDaoMemory from "../dao/users.dao.js";
 
 class UsersService {
+  async getUsers() {
+    return usersDaoMemory.getUsers();
+  }
   async getPublicUser(user) {
     let usersRepository = new UsersRepository()
     return usersRepository.getPublicUser(user);
@@ -20,6 +23,9 @@ class UsersService {
   }
   async findByIdAndUpdate(uidUser,user){
     return usersDaoMemory.findByIdAndUpdate(uidUser,user);
+  }
+  async deleteInactiveUsers(){
+    return usersDaoMemory.deleteInactiveUsers();
   }
 }
 const usersService = new UsersService()

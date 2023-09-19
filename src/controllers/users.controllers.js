@@ -2,6 +2,22 @@ import usersService from "../services/users.service.js";
 
 
 class UsersController {
+    deleteInactiveUsers = async (req, res) => {
+        try {
+            let deletedUsersCount = await usersService.deleteInactiveUsers()
+            res.send({deletedUsersCount})
+        }catch(error){
+            res.status(400).send({error:error.message});
+        }
+    }
+    getUsers = async (req, res) => {
+        try {
+            let users = await usersService.getUsers()
+            res.send({users})
+        }catch(error){
+            res.status(400).send({error:error.message});
+        }
+    }
     updateUserRol = async (req, res) => {
         const uidUser = req.params.uidUser;
         try {

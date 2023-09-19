@@ -14,6 +14,10 @@
                 <p><b>Product: </b>{{this.product.title}}</p>
                 <p><b>Description: </b>{{this.product.description}}</p>
                 <p><b>Price: </b>{{this.product.price}}</p>
+                <p><b>Quantity: </b>{{this.quantity}}</p>
+                <button class="button" onclick="removeFromCart('{{../idCart}}','{{this.product._id}}')">
+                    Remove from cart
+                </button>
             </div>  
         {{/each}}
     </div>

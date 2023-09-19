@@ -6,10 +6,26 @@ function purchaseCart(cartId) {
       })
       .catch(error => {
         // Handle errors
-        console.error(error);
+        alert(error.response.data.error)
+        console.error(error.response.data.error);
       });
   }
 function checkScriptLoad() {
     console.log('Script loaded successfully.');
     // Perform additional validation or actions
+  }
+
+  function removeFromCart(cartId, productId) {
+    console.log(JSON.stringify(cartId))
+    console.log(JSON.stringify(productId))
+    // JavaScript code here
+    axios.delete(`http://localhost:8080/api/carts/${cartId}/product/${productId}`)
+      .then(response => {
+        location.reload()
+      })
+      /*.catch(error => {
+        // Handle errors
+        alert(error.response.data.error)
+        console.error(error.response.data.error);
+      });*/
   }

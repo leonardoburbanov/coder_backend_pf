@@ -7,7 +7,8 @@ function addProduct(idProduct,cartId) {
       })
       .catch(error => {
         // Handle errors
-        console.error(error);
+        alert(error.response.data.error)
+        console.error(error.response.data.error);
       });
   }
 function checkScriptLoad() {

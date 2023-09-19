@@ -4,6 +4,7 @@ import { EError } from "../enums/EError.js";
 import { generateProductErrorInfo } from "../services/errors/productErrorInfo.error.js";
 import userModel from "../dao/models/User.model.js";
 import productModel from "../dao/models/products.model.js";
+import { productDeleteConfirmation } from '../messages/email/nodemailer.js';
 
 class Product {
     constructor(title, description, price, thumbnail = null, code, stock, status = true, category, owner = 'admin') {
@@ -179,6 +180,11 @@ class ProductsController {
         
         try {
             let product_deleted = await productsService.deleteProduct(idProduct, ownerEmail, userRole)
+            
+            const user = await userModel.findOne({email: product_deleted[0].owner})
+            if(user.rol == "premium"){
+                await productDeleteConfirmation(product_deleted[0].owner)
+            }
             res.send({data: product_deleted, message: "Product deleted"})
         }catch(error){
             res.status(400).send({error:error.message});

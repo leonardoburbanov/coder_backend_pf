@@ -26,7 +26,8 @@ const privateAcces = (req,res,next)=>{
     next();
 }
 
-router.get('/users', privateAcces, adminAcces, async (req,res)=>{
+// privateAcces, adminAcces
+router.get('/admin/users', privateAcces, adminAcces, async (req,res)=>{
     const users = await userModel.find().lean();
     const user = req.session.user;
 
@@ -128,5 +129,7 @@ router.get("/reset-password",(req,res)=>{
     const token = req.query.token;
     res.render("resetPassword",{token});
 });
+
+
 export default router;
 

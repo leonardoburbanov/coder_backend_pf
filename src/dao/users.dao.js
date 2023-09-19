@@ -1,6 +1,38 @@
 import usersModel from "./models/User.model.js";
 
 class UsersDaoMemory {
+
+
+    getUsers = async () =>{
+        let users = await usersModel.find().select('email first_name last_name rol last_connection');
+        return users
+    }
+
+     deleteInactiveUsers = async () => {
+        try {
+          const currentTime = new Date();
+          const days = 2 * 24 * 60 * 60 * 1000
+          //const days = 30 * 60 * 1000
+          const timeAgo = new Date(currentTime - days); // 2 days ago
+      
+          const result = await usersModel.deleteMany({
+            $and: [
+              { $or: [
+                { last_connection: { $lt: timeAgo } },
+                { last_connection: { $exists: false } },
+              ]},
+              { rol: { $ne: "admin" } }
+            ]
+          });
+      
+          console.log(`${result.deletedCount} users deleted.`);
+          return result
+
+        } catch (error) {
+            throw new Error('Error deleting inactive users.');
+        }
+      }
+
     updateUserRol = async(uid_user)=>{
         let user_found = await usersModel.find({_id:uid_user})
         let new_rol = "premium"
