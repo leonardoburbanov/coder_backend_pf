@@ -32,13 +32,8 @@ Se adjunta una colección de requests de Postman con los tests solicitados.
 
 0. Crear una vista para poder visualizar, modificar el rol y eliminar un usuario. Esta vista únicamente será accesible para el administrador del ecommerce
 1. Mantener un correcto manejo de sesiones
-- Admin
-- Premium
-- User
-
 2. Proceso de compra
 - Usuario premium no puede comprar productos suyos. Test Local: **[Passed]** Test Prod: **[]**
 - Admin no puede comprar. Test Local: **[Passed]** Test Prod: **[]**
 3. Agregar o quitar productos del carrito. Test Local: **[Passed]** Test Prod: **[]**
 4. Cierre completo de compra con información. Test Local: **[Passed]** Test Prod: **[]**
-
