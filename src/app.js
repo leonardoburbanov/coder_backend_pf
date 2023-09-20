@@ -33,8 +33,9 @@ const MONGO = config.mongo.url;
 const SECRET = config.session.secret;
 
 const app = express();
-app.use(express.static(__dirname+'/public'));
 app.use(cors());
+app.use(express.static(__dirname+'/public'));
+
 
 const sessionMiddleware = session({
     store: new MongoStore({
