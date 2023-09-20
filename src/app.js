@@ -26,6 +26,7 @@ import { errorHandler } from "./middlewares/errohandler.middleware.js";
 import { addLogger } from "./logger/logger.js";
 import { swaggerSpecs } from "./config/docConfig.js";
 import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
 
 const PORT = config.server.port;
 const MONGO = config.mongo.url;
@@ -33,6 +34,7 @@ const SECRET = config.session.secret;
 
 const app = express();
 app.use(express.static(__dirname+'/public'));
+app.use(cors());
 
 const sessionMiddleware = session({
     store: new MongoStore({
