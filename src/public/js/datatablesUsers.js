@@ -5,7 +5,7 @@ $(document).ready(function(){
 function updateRol(userId) {
     console.log("Llega aquí");
     // JavaScript code here
-    axios.put(`http://localhost:8080/api/users/premium/${userId}`)
+    axios.put(`/api/users/premium/${userId}`)
       .then(response => {
         location.reload()
       })
@@ -22,7 +22,7 @@ function checkScriptLoad() {
 function deleteUser(userId) {
     console.log("Llega aquí");
     // JavaScript code here
-    axios.delete(`http://localhost:8080/api/users/${userId}`)
+    axios.delete(`/api/users/${userId}`)
       .then(response => {
         location.reload()
       })

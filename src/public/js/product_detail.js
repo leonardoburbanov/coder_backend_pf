@@ -1,7 +1,8 @@
 
 function addProduct(idProduct,cartId) {
+  console.log(cartId)
     // JavaScript code here
-    axios.post(`http://localhost:8080/api/carts/${cartId}/product/${idProduct}`)
+    axios.post(`/api/carts/${cartId}/product/${idProduct}`)
       .then(response => {
         window.location.href = `/carts/${cartId}`;
       })

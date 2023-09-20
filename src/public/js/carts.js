@@ -1,6 +1,6 @@
 function purchaseCart(cartId) {
     // JavaScript code here
-    axios.post(`http://localhost:8080/api/carts/${cartId}/purchase`)
+    axios.post(`/api/carts/${cartId}/purchase`)
       .then(response => {
         window.location.href = `/`;
       })
@@ -19,7 +19,7 @@ function checkScriptLoad() {
     console.log(JSON.stringify(cartId))
     console.log(JSON.stringify(productId))
     // JavaScript code here
-    axios.delete(`http://localhost:8080/api/carts/${cartId}/product/${productId}`)
+    axios.delete(`/api/carts/${cartId}/product/${productId}`)
       .then(response => {
         location.reload()
       })
