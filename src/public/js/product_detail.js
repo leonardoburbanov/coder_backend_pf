@@ -7,8 +7,9 @@ function addProduct(idProduct,cartId) {
       })
       .catch(error => {
         // Handle errors
-        alert(error.response.data.error)
-        console.error(error.response.data.error);
+        alert(error.request.response)
+        console.error(error.request.respose);
+        window.location.href = `/api/session/logout`;
       });
   }
 function checkScriptLoad() {

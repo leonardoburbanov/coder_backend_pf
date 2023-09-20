@@ -103,7 +103,9 @@ router.get("/carts/:idcart", async (req,res)=>{
     const subTotalCart = calculateTotalValue(products)
     const shipping = 5
     const totalCart = subTotalCart + shipping
-    
+    if(products.length == 0){
+        res.redirect('/products')
+    }
     res.render('carts', {
         idCart,
         products: products.map(product => product.toJSON()),
@@ -127,7 +129,7 @@ router.get("/carts/:idcart/pre-ticket", async (req,res)=>{
             const cartProduct = cart.products[i];
             const productDB = await productsService.getProductById(cartProduct.product._id);
             if(cartProduct.quantity<=productDB.stock){
-                await cartsService.deleteProductInCart(cartId,cartProduct.product._id.toString())
+                //await cartsService.deleteProductInCart(cartId,cartProduct.product._id.toString())
                 ticketProducts.push(cartProduct);
             } else {
                 rejectedProducts.push(cartProduct);

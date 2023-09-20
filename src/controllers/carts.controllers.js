@@ -123,7 +123,8 @@ class CartsController {
     purchaseCart = async (req, res) => {
         try {
             const cartId = req.params.idcart;
-            const email = req.body.email;
+            const email = req.session.user.email;
+            console.log('email',email);
             const cart = await cartsService.getCartById(cartId);
             if(cart){
                 if(!cart.products.length){
@@ -146,7 +147,7 @@ class CartsController {
                 const cartDeleted = await cartsService.deleteFullCart(cartId);
                 const newTicket = {
                     code:uuidv4(),
-                    purchase_datetime: new Date().toLocaleString(),
+                    purchase_datetime: new Date(),
                     amount:500,
                     purchaser:email,
                     products: ticketProducts
